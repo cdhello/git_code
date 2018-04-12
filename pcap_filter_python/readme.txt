@@ -26,3 +26,13 @@ wireshark的安装目录下有分割和合并工具
 合并
 "C:\Program Files\Wireshark\merge.exe" -w destfile sourcefile1 sourcefile2 .....  
 
+
+
+
+
+20180412 更新 wxfilter.py
+用wx做了个界面，半成品。没空做，先记下来。
+想到的可以完善的地方：
+可以把上次的过滤条件保存个配置文件，起来的时候自动加载。
+进度条不太好，没到100%就结束。
+完成提示。
