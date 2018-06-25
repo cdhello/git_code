@@ -295,7 +295,16 @@ macro AddCComments(hwnd, sel, hbuf)
         SetBufSelText(hbuf, "/*  */");
         SetBufIns(hbuf, sel.lnFirst, sel.ichFirst + 3); /* 光标注释符中间，可以直接输入注释内容了 */
     }
-    else
+    else if (sel.lnFirst == sel.lnLast) /* 选中的text可能不足一行 */
+    {
+        szSelText = GetBufSelText(hbuf)
+        szSelText = cat(cat("/* ", szSelText), " */")
+        SetBufSelText (hbuf, szSelText)
+        
+        sel.ichLim = sel.ichLim + 6; /* 把新加的6个字符加进去 */
+        SetWndSel(hwnd, sel)          /* 设置选中，否则光标会停在新字符串最后 */
+    }
+    else /* 选中的text大于一行 */
     {
         i = sel.lnFirst
         while (i <= sel.lnLast)
